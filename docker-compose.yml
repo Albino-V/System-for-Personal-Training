@@ -1,0 +1,22 @@
+services:
+  backend:
+    build: ./backend
+    expose:
+      - "4000"
+    environment:
+      PORT: "4000"
+      FRONTEND_URL: "http://72.60.3.247:4001"
+      GOOGLE_SHEET_ID: ""
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: ""
+      GOOGLE_PRIVATE_KEY: ""
+    volumes:
+      - ./data.json:/app/data.json
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4001:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
