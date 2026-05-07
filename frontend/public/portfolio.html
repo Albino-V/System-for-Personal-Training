@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vinicius A. — Portfolio</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#080808;color:#fff;min-height:100vh;padding:64px 24px}
+
+.header{text-align:center;margin-bottom:80px}
+.avatar{width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,#16a34a,#0d7a30);display:flex;align-items:center;justify-content:center;font-size:1.8rem;font-weight:900;margin:0 auto 16px;border:3px solid #1a1a1a}
+.header h1{font-size:clamp(2rem,4vw,3.2rem);font-weight:900;letter-spacing:-0.03em;margin-bottom:8px}
+.header p{color:#666;font-size:1.05rem;max-width:480px;margin:0 auto 20px;line-height:1.6}
+.badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.badge{background:#111;border:1px solid #222;color:#888;font-size:0.75rem;font-weight:600;padding:5px 12px;border-radius:99px}
+.badge.green{border-color:#16a34a44;color:#4ade80}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(520px,1fr));gap:24px;max-width:1200px;margin:0 auto}
+
+.card{background:#0f0f0f;border:1px solid #1a1a1a;border-radius:20px;overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-6px);box-shadow:0 24px 48px rgba(0,0,0,0.5)}
+
+.card-visual{height:220px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;padding:24px}
+
+/* FitCheck */
+.fitcheck-bg{background:linear-gradient(135deg,#0a1a0a,#0d2a0d)}
+.fitcheck-screen{background:#fff;border-radius:12px;padding:20px 24px;width:280px;box-shadow:0 16px 40px rgba(0,0,0,0.4)}
+.fitcheck-screen .check{width:48px;height:48px;background:#16a34a;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:20px}
+.fitcheck-screen h3{color:#166534;font-size:0.95rem;font-weight:800;text-align:center;margin-bottom:4px}
+.fitcheck-screen p{color:#555;font-size:0.72rem;text-align:center;margin-bottom:12px}
+.fitcheck-table{width:100%;border-collapse:collapse;font-size:0.68rem}
+.fitcheck-table th{background:#f9fafb;padding:5px 8px;text-align:left;color:#888;font-weight:600}
+.fitcheck-table td{padding:5px 8px;border-bottom:1px solid #f3f4f6;color:#333}
+
+/* Promo */
+.promo-bg{background:linear-gradient(135deg,#1a0a00,#2a1200)}
+.phone-mockup{width:120px;background:#111;border-radius:20px;border:2px solid #222;overflow:hidden;margin:0 8px;box-shadow:0 12px 32px rgba(0,0,0,0.5)}
+.phone-top{height:14px;background:#000;display:flex;align-items:center;justify-content:center}
+.phone-top::after{content:'';width:40px;height:4px;background:#111;border-radius:99px}
+.promo-screen{padding:10px 8px;background:#fff;min-height:160px}
+.promo-header{background:#e30613;color:#fff;font-size:0.55rem;font-weight:800;padding:5px 8px;margin:-10px -8px 8px;text-align:center;letter-spacing:0.05em}
+.promo-item{background:#f9f9f9;border-radius:6px;padding:6px;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.promo-item-img{width:28px;height:28px;border-radius:4px;background:#ddd;flex-shrink:0}
+.promo-item-text{font-size:0.52rem;color:#333}
+.promo-item-price{font-size:0.62rem;font-weight:800;color:#e30613;font-family:Georgia,serif}
+
+/* Caneca */
+.caneca-bg{background:linear-gradient(135deg,#0a0a1a,#12122a)}
+.caneca-card{background:#fff;border-radius:12px;width:260px;overflow:hidden;box-shadow:0 12px 32px rgba(0,0,0,0.4)}
+.caneca-header{background:#1e1b4b;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+.caneca-header span{color:#fff;font-size:0.7rem;font-weight:800}
+.caneca-body{padding:14px}
+.caneca-mug{width:80px;height:80px;margin:0 auto 10px;display:block;background:linear-gradient(135deg,#818cf8,#6366f1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.caneca-title{font-size:0.8rem;font-weight:700;color:#1e1b4b;text-align:center;margin-bottom:6px}
+.caneca-options{display:flex;gap:4px;justify-content:center;margin-bottom:10px}
+.caneca-dot{width:16px;height:16px;border-radius:50%;border:2px solid #ddd}
+.caneca-btn{background:#1e1b4b;color:#fff;border:none;border-radius:6px;padding:6px 14px;font-size:0.65rem;font-weight:700;width:100%;cursor:pointer}
+
+/* Damazio */
+.damazio-bg{background:linear-gradient(135deg,#0a0000,#1a0505)}
+.damazio-window{background:#1a1a1a;border-radius:10px;width:300px;overflow:hidden;border:1px solid #333;box-shadow:0 12px 32px rgba(0,0,0,0.5)}
+.damazio-titlebar{background:#252525;padding:8px 12px;display:flex;align-items:center;gap:6px}
+.damazio-dot{width:10px;height:10px;border-radius:50%}
+.damazio-title{font-size:0.6rem;color:#666;margin-left:6px}
+.damazio-body{padding:12px}
+.damazio-row{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:6px;margin-bottom:4px;background:#222}
+.damazio-avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#ef4444,#b91c1c);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:0.6rem;color:#fff;font-weight:700}
+.damazio-info{flex:1}
+.damazio-name{font-size:0.6rem;font-weight:600;color:#fff}
+.damazio-stat{font-size:0.55rem;color:#666}
+.damazio-score{font-size:0.6rem;font-weight:700;color:#ef4444}
+.damazio-ai{background:#1a0a0a;border:1px solid #ef444433;border-radius:6px;padding:8px;margin-top:8px}
+.damazio-ai-label{font-size:0.55rem;color:#ef4444;font-weight:700;margin-bottom:4px}
+.damazio-ai-text{font-size:0.55rem;color:#888;line-height:1.4}
+
+/* Card content */
+.card-content{padding:24px;flex:1;display:flex;flex-direction:column}
+.card-tag{font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px}
+.card-title{font-size:1.25rem;font-weight:800;letter-spacing:-0.02em;margin-bottom:8px;line-height:1.2}
+.card-desc{font-size:0.85rem;color:#666;line-height:1.6;margin-bottom:16px;flex:1}
+.stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.tag{background:#141414;border:1px solid #222;color:#888;font-size:0.72rem;padding:4px 10px;border-radius:6px}
+.card-footer{display:flex;gap:10px;align-items:center}
+.btn-demo{background:#16a34a;color:#fff;text-decoration:none;padding:8px 18px;border-radius:8px;font-size:0.8rem;font-weight:700;transition:opacity 0.2s}
+.btn-demo:hover{opacity:0.85}
+.btn-gh{background:#1a1a1a;color:#888;text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.8rem;font-weight:600;border:1px solid #222;transition:border-color 0.2s}
+.btn-gh:hover{border-color:#444;color:#fff}
+.status-dot{width:8px;height:8px;border-radius:50%;background:#16a34a;margin-left:auto}
+.status-label{font-size:0.72rem;color:#4ade80}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="avatar">V</div>
+  <h1>Vinicius A.</h1>
+  <p>Web & Mobile App Developer specializing in automation, integrations, and real-world apps that solve real problems.</p>
+  <div class="badges">
+    <span class="badge green">⚡ Available now</span>
+    <span class="badge">React Native</span>
+    <span class="badge">Node.js</span>
+    <span class="badge">Python</span>
+    <span class="badge">Docker</span>
+    <span class="badge">Google APIs</span>
+    <span class="badge">Automation</span>
+  </div>
+</div>
+
+<div class="grid">
+
+  <!-- FitCheck -->
+  <div class="card">
+    <div class="card-visual fitcheck-bg">
+      <div class="fitcheck-screen">
+        <div class="check">✓</div>
+        <h3>You're checked in!</h3>
+        <p>Welcome, <strong>John Smith</strong> — 09:29 AM</p>
+        <table class="fitcheck-table">
+          <tr><th>Client</th><th>Time</th></tr>
+          <tr><td>John Smith</td><td>09:29 AM</td></tr>
+          <tr><td>Maria Jones</td><td>08:45 AM</td></tr>
+          <tr><td>Carlos R.</td><td>07:30 AM</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-tag" style="color:#4ade80">Automation · Google Sheets</div>
+      <div class="card-title">FitCheck — Training Check-In System</div>
+      <div class="card-desc">QR code attendance tracking for personal trainers. Clients scan with any camera, check-in logs to Google Sheets instantly. No app download needed. Includes trainer dashboard with daily attendance and 30-day history.</div>
+      <div class="stack">
+        <span class="tag">Node.js</span><span class="tag">React</span><span class="tag">Google Sheets API</span><span class="tag">Docker</span><span class="tag">Nginx</span>
+      </div>
+      <div class="card-footer">
+        <a href="http://72.60.3.247:4001" class="btn-demo" target="_blank">Live Demo →</a>
+        <a href="https://github.com/Albino-V/System-for-Personal-Training" class="btn-gh" target="_blank">GitHub</a>
+        <span class="status-dot"></span><span class="status-label">Live on VPS</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Promo Mercados -->
+  <div class="card">
+    <div class="card-visual promo-bg">
+      <div class="phone-mockup">
+        <div class="phone-top"></div>
+        <div class="promo-screen">
+          <div class="promo-header">🔥 PROMO MERCADOS</div>
+          <div class="promo-item">
+            <div class="promo-item-img" style="background:#fee2e2"></div>
+            <div>
+              <div class="promo-item-text">Picanha Kg</div>
+              <div class="promo-item-price">R$ 39,90</div>
+            </div>
+          </div>
+          <div class="promo-item">
+            <div class="promo-item-img" style="background:#dcfce7"></div>
+            <div>
+              <div class="promo-item-text">Cerveja Pack 12</div>
+              <div class="promo-item-price">R$ 29,90</div>
+            </div>
+          </div>
+          <div class="promo-item">
+            <div class="promo-item-img" style="background:#fef9c3"></div>
+            <div>
+              <div class="promo-item-text">Frango Inteiro</div>
+              <div class="promo-item-price">R$ 12,90</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-mockup" style="margin-top:24px">
+        <div class="phone-top"></div>
+        <div class="promo-screen">
+          <div class="promo-header" style="background:#1d4ed8">📊 ADMIN</div>
+          <div style="padding:4px 0">
+            <div style="font-size:0.55rem;color:#666;margin-bottom:4px;font-weight:600">MERCADOS ATIVOS</div>
+            <div style="background:#f9fafb;border-radius:4px;padding:4px 6px;margin-bottom:3px;font-size:0.55rem;color:#333">Supermercado BH · 12 promoções</div>
+            <div style="background:#f9fafb;border-radius:4px;padding:4px 6px;margin-bottom:3px;font-size:0.55rem;color:#333">Atacadão · 8 promoções</div>
+            <div style="background:#f9fafb;border-radius:4px;padding:4px 6px;font-size:0.55rem;color:#333">Carrefour · 24 promoções</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-tag" style="color:#fb923c">Full Stack · Marketplace</div>
+      <div class="card-title">Promo Mercados — Local Deals App</div>
+      <div class="card-desc">Full marketplace app for local supermarket promotions — like Pelando for grocery stores. React Native mobile app with real-time feed, admin dashboard for stores, and Python backend. Deployed on VPS with Docker.</div>
+      <div class="stack">
+        <span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+      </div>
+      <div class="card-footer">
+        <span class="btn-demo" style="background:#ea580c">iOS + Android</span>
+        <span class="status-dot" style="background:#f97316"></span><span class="status-label" style="color:#fb923c">Production</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Caneca Mania -->
+  <div class="card">
+    <div class="card-visual caneca-bg">
+      <div class="caneca-card">
+        <div class="caneca-header">
+          <span>☕ CANECA MANIA</span>
+          <span style="color:#818cf8;font-size:0.65rem">Custom Store</span>
+        </div>
+        <div class="caneca-body">
+          <div class="caneca-mug">☕</div>
+          <div class="caneca-title">Caneca Personalizada Premium</div>
+          <div class="caneca-options">
+            <div class="caneca-dot" style="background:#ef4444;border-color:#ef4444"></div>
+            <div class="caneca-dot" style="background:#3b82f6;border-color:#3b82f6"></div>
+            <div class="caneca-dot" style="background:#000;border-color:#000"></div>
+            <div class="caneca-dot" style="background:#fff"></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+            <span style="font-size:0.72rem;color:#666">Seu texto aqui</span>
+            <span style="font-size:0.85rem;font-weight:800;color:#1e1b4b">R$ 49,90</span>
+          </div>
+          <button class="caneca-btn">Adicionar ao carrinho</button>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-tag" style="color:#a78bfa">E-commerce · Customization</div>
+      <div class="card-title">Caneca Mania — Custom Mug Store</div>
+      <div class="card-desc">E-commerce platform for custom printed mugs with real-time product preview. Customers personalize their mug before checkout. Includes order management, inventory control, and payment integration. Deployed with Docker.</div>
+      <div class="stack">
+        <span class="tag">Node.js</span><span class="tag">React</span><span class="tag">Prisma</span><span class="tag">PostgreSQL</span><span class="tag">Docker</span>
+      </div>
+      <div class="card-footer">
+        <span class="btn-demo" style="background:#7c3aed">E-commerce</span>
+        <span class="status-dot" style="background:#a78bfa"></span><span class="status-label" style="color:#a78bfa">Production</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Damazio -->
+  <div class="card">
+    <div class="card-visual damazio-bg">
+      <div class="damazio-window">
+        <div class="damazio-titlebar">
+          <div class="damazio-dot" style="background:#ef4444"></div>
+          <div class="damazio-dot" style="background:#f59e0b"></div>
+          <div class="damazio-dot" style="background:#10b981"></div>
+          <span class="damazio-title">Damazio — Social Analytics</span>
+        </div>
+        <div class="damazio-body">
+          <div style="font-size:0.6rem;color:#666;font-weight:700;margin-bottom:6px;letter-spacing:0.05em">TOP CREATORS · FITNESS</div>
+          <div class="damazio-row">
+            <div class="damazio-avatar">A</div>
+            <div class="damazio-info">
+              <div class="damazio-name">@athlete_pro</div>
+              <div class="damazio-stat">2.4M followers · 340 posts</div>
+            </div>
+            <div class="damazio-score">94</div>
+          </div>
+          <div class="damazio-row">
+            <div class="damazio-avatar" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)">B</div>
+            <div class="damazio-info">
+              <div class="damazio-name">@bodybuilder_x</div>
+              <div class="damazio-stat">890K followers · 210 posts</div>
+            </div>
+            <div class="damazio-score">87</div>
+          </div>
+          <div class="damazio-ai">
+            <div class="damazio-ai-label">🤖 Gemini AI Analysis</div>
+            <div class="damazio-ai-text">"High engagement hook at 0:03. Recommend posting between 6-8pm for 2.3x reach boost based on audience patterns..."</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="card-tag" style="color:#f87171">AI · Web Scraping · Desktop</div>
+      <div class="card-title">Damazio — Social Media Analyzer</div>
+      <div class="card-desc">Desktop app that scrapes Instagram, TikTok, and YouTube for competitor analysis. Integrates Google Gemini AI to analyze video content, extract hooks, and generate engagement insights. Built as an Electron app with automated reporting.</div>
+      <div class="stack">
+        <span class="tag">Electron</span><span class="tag">Node.js</span><span class="tag">Gemini AI</span><span class="tag">Web Scraping</span><span class="tag">Instagram API</span>
+      </div>
+      <div class="card-footer">
+        <span class="btn-demo" style="background:#dc2626">Desktop App</span>
+        <span class="status-dot" style="background:#f87171"></span><span class="status-label" style="color:#f87171">Private</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
