@@ -9,8 +9,9 @@ services:
       GOOGLE_SHEET_ID: ""
       GOOGLE_SERVICE_ACCOUNT_EMAIL: ""
       GOOGLE_PRIVATE_KEY: ""
+      DATA_DIR: "/app/data"
     volumes:
-      - ./data.json:/app/data.json
+      - checkin_data:/app/data
     restart: unless-stopped
 
   frontend:
@@ -20,3 +21,6 @@ services:
     depends_on:
       - backend
     restart: unless-stopped
+
+volumes:
+  checkin_data:
