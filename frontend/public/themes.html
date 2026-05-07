@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>FitCheck — Brand Themes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+  body {
+    font-family:'Inter',sans-serif;
+    background:#0d0d0d;
+    color:#fff;
+    min-height:100vh;
+    padding:60px 24px;
+  }
+
+  .hero {
+    text-align:center;
+    margin-bottom:64px;
+  }
+  .hero h1 {
+    font-size:clamp(1.8rem,4vw,3rem);
+    font-weight:900;
+    letter-spacing:-0.02em;
+    margin-bottom:12px;
+  }
+  .hero p {
+    color:#888;
+    font-size:1.1rem;
+    max-width:520px;
+    margin:0 auto;
+    line-height:1.6;
+  }
+  .hero .tag {
+    display:inline-block;
+    background:#1a1a1a;
+    border:1px solid #333;
+    color:#aaa;
+    font-size:0.78rem;
+    font-weight:600;
+    letter-spacing:0.08em;
+    padding:5px 14px;
+    border-radius:99px;
+    margin-bottom:20px;
+    text-transform:uppercase;
+  }
+
+  .cards {
+    display:flex;
+    gap:28px;
+    justify-content:center;
+    flex-wrap:wrap;
+    max-width:1100px;
+    margin:0 auto;
+  }
+
+  .card {
+    background:#161616;
+    border-radius:20px;
+    width:300px;
+    overflow:hidden;
+    border:1px solid #222;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+    cursor:default;
+    flex-shrink:0;
+  }
+  .card:hover {
+    transform:translateY(-10px) scale(1.02);
+    box-shadow:0 32px 64px rgba(0,0,0,0.6);
+  }
+
+  /* Phone mockup */
+  .phone-wrap {
+    padding:28px 28px 0;
+    background:linear-gradient(160deg,var(--bg1),var(--bg2));
+    display:flex;
+    justify-content:center;
+  }
+  .phone {
+    width:180px;
+    background:#111;
+    border-radius:28px;
+    border:3px solid rgba(255,255,255,0.08);
+    box-shadow:0 20px 40px rgba(0,0,0,0.5);
+    overflow:hidden;
+    position:relative;
+  }
+  .phone-notch {
+    height:18px;
+    background:#000;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .phone-notch::after {
+    content:'';
+    width:60px;height:6px;
+    background:#111;
+    border-radius:99px;
+  }
+  .phone-screen {
+    padding:20px 16px 24px;
+    min-height:320px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    text-align:center;
+    background:var(--screen-bg);
+  }
+
+  .check-icon {
+    width:64px;height:64px;
+    border-radius:50%;
+    background:var(--accent);
+    display:flex;align-items:center;justify-content:center;
+    font-size:28px;
+    margin-bottom:14px;
+    box-shadow:0 0 24px var(--glow);
+  }
+  .screen-title {
+    font-size:0.85rem;
+    font-weight:900;
+    letter-spacing:0.02em;
+    color:var(--text-main);
+    margin-bottom:4px;
+    line-height:1.2;
+  }
+  .screen-name {
+    font-size:0.72rem;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:6px;
+  }
+  .screen-time {
+    font-size:0.62rem;
+    color:var(--text-muted);
+    margin-bottom:14px;
+  }
+  .screen-msg {
+    font-size:0.6rem;
+    color:var(--text-muted);
+    line-height:1.5;
+    margin-bottom:12px;
+  }
+  .screen-badge {
+    background:var(--badge-bg);
+    color:var(--accent);
+    border-radius:99px;
+    padding:4px 10px;
+    font-size:0.58rem;
+    font-weight:700;
+    letter-spacing:0.04em;
+  }
+
+  /* Card info */
+  .card-info {
+    padding:20px 20px 24px;
+  }
+  .card-info .gym-name {
+    font-size:1.1rem;
+    font-weight:800;
+    margin-bottom:4px;
+  }
+  .card-info .gym-desc {
+    font-size:0.82rem;
+    color:#666;
+    line-height:1.5;
+    margin-bottom:14px;
+  }
+  .card-info .colors {
+    display:flex;
+    gap:6px;
+    margin-bottom:16px;
+  }
+  .swatch {
+    width:20px;height:20px;
+    border-radius:50%;
+    border:2px solid rgba(255,255,255,0.1);
+  }
+  .card-info .pill {
+    display:inline-block;
+    background:#1f1f1f;
+    border:1px solid #2a2a2a;
+    color:#aaa;
+    font-size:0.72rem;
+    padding:3px 10px;
+    border-radius:99px;
+    margin-right:5px;
+    margin-bottom:5px;
+  }
+
+  /* Theme 1 — SmartFit */
+  .smartfit {
+    --bg1:#1a1a00;
+    --bg2:#0d0d00;
+    --accent:#FFE600;
+    --glow:rgba(255,230,0,0.4);
+    --screen-bg:#0d0d0d;
+    --text-main:#ffffff;
+    --text-muted:#777;
+    --badge-bg:rgba(255,230,0,0.1);
+  }
+  .smartfit .card-info .gym-name { color:#FFE600; }
+  .smartfit .phone { border-color:rgba(255,230,0,0.15); }
+
+  /* Theme 2 — BlueFit */
+  .bluefit {
+    --bg1:#001a40;
+    --bg2:#000d26;
+    --accent:#4A9DFF;
+    --glow:rgba(74,157,255,0.4);
+    --screen-bg:#f8faff;
+    --text-main:#003DA5;
+    --text-muted:#8899bb;
+    --badge-bg:rgba(0,61,165,0.08);
+  }
+  .bluefit .check-icon { color:#fff; }
+  .bluefit .screen-title { color:#003DA5; }
+  .bluefit .card-info .gym-name { color:#4A9DFF; }
+  .bluefit .phone { border-color:rgba(74,157,255,0.15); }
+
+  /* Theme 3 — DrakGym */
+  .drakgym {
+    --bg1:#1a0000;
+    --bg2:#0d0000;
+    --accent:#FF1A1A;
+    --glow:rgba(255,26,26,0.5);
+    --screen-bg:#0d0d0d;
+    --text-main:#ffffff;
+    --text-muted:#666;
+    --badge-bg:rgba(255,26,26,0.1);
+  }
+  .drakgym .card-info .gym-name { color:#FF1A1A; }
+  .drakgym .phone { border-color:rgba(255,26,26,0.15); }
+  .drakgym .screen-title { text-transform:uppercase; letter-spacing:0.05em; font-size:0.8rem; }
+
+  .cta {
+    text-align:center;
+    margin-top:64px;
+  }
+  .cta p { color:#555; font-size:0.9rem; margin-bottom:16px; }
+  .cta a {
+    display:inline-block;
+    background:#16a34a;
+    color:#fff;
+    text-decoration:none;
+    padding:14px 32px;
+    border-radius:10px;
+    font-weight:700;
+    font-size:1rem;
+    transition:opacity 0.2s;
+  }
+  .cta a:hover { opacity:0.85; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="tag">✦ Brand Customization</div>
+  <h1>One system.<br>Any gym brand.</h1>
+  <p>FitCheck adapts to your identity — colors, name, and feel. Here are three examples.</p>
+</div>
+
+<div class="cards">
+
+  <!-- SmartFit -->
+  <div class="card smartfit">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div style="align-self:flex-start;font-size:0.55rem;font-weight:800;color:#FFE600;letter-spacing:0.12em;margin-bottom:16px;">SMARTFIT</div>
+          <div class="check-icon">✓</div>
+          <div class="screen-title">You're checked in!</div>
+          <div class="screen-name">Lucas Oliveira</div>
+          <div class="screen-time">09:29 AM — Unidade Paulista</div>
+          <div class="screen-msg">Great work!<br>Keep pushing your limits 💪</div>
+          <div class="screen-badge">🔥 12 days in a row</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="gym-name">SmartFit</div>
+      <div class="gym-desc">Premium network style — high contrast, energetic, bold typography.</div>
+      <div class="colors">
+        <div class="swatch" style="background:#FFE600"></div>
+        <div class="swatch" style="background:#1A1A1A"></div>
+        <div class="swatch" style="background:#ffffff"></div>
+      </div>
+      <span class="pill">Dark theme</span>
+      <span class="pill">Yellow accent</span>
+      <span class="pill">Streak badge</span>
+    </div>
+  </div>
+
+  <!-- BlueFit -->
+  <div class="card bluefit">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div style="align-self:flex-start;font-size:0.55rem;font-weight:800;color:#003DA5;letter-spacing:0.12em;margin-bottom:16px;">BLUEFIT</div>
+          <div class="check-icon">✓</div>
+          <div class="screen-title">Check-in confirmed!</div>
+          <div class="screen-name">Carlos Mendes</div>
+          <div class="screen-time">09:29 AM — Unidade Centro</div>
+          <div class="screen-msg">Consistency is key.<br>You're on track this month ✅</div>
+          <div class="screen-badge">8 / 12 sessions</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="gym-name">BlueFit</div>
+      <div class="gym-desc">Corporate athletic style — clean, trustworthy, professional feel.</div>
+      <div class="colors">
+        <div class="swatch" style="background:#003DA5"></div>
+        <div class="swatch" style="background:#4A9DFF"></div>
+        <div class="swatch" style="background:#f8faff"></div>
+      </div>
+      <span class="pill">Light theme</span>
+      <span class="pill">Blue palette</span>
+      <span class="pill">Session counter</span>
+    </div>
+  </div>
+
+  <!-- DrakGym -->
+  <div class="card drakgym">
+    <div class="phone-wrap">
+      <div class="phone">
+        <div class="phone-notch"></div>
+        <div class="phone-screen">
+          <div style="align-self:flex-start;font-size:0.55rem;font-weight:800;color:#FF1A1A;letter-spacing:0.12em;margin-bottom:16px;">DRAKGYM</div>
+          <div class="check-icon" style="font-size:22px;">💀</div>
+          <div class="screen-title">CHECKED IN</div>
+          <div class="screen-name">Rafael Costa</div>
+          <div class="screen-time">09:29 PM</div>
+          <div class="screen-msg">Session started.<br>No excuses. 🔥</div>
+          <div class="screen-badge">⚡ Total: 247 sessions</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-info">
+      <div class="gym-name">DrakGym</div>
+      <div class="gym-desc">Underground hardcore style — dark, raw, aggressive energy.</div>
+      <div class="colors">
+        <div class="swatch" style="background:#FF1A1A"></div>
+        <div class="swatch" style="background:#0d0d0d"></div>
+        <div class="swatch" style="background:#1E1E1E"></div>
+      </div>
+      <span class="pill">Full dark</span>
+      <span class="pill">Red neon</span>
+      <span class="pill">All-caps bold</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="cta">
+  <p>Want your gym's custom theme? Get started today.</p>
+  <a href="/">Try FitCheck →</a>
+</div>
+
+</body>
+</html>
